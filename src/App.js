@@ -1,9 +1,12 @@
 import React from 'react'
 import { Router, Link } from 'react-static'
-import styled, { injectGlobal } from 'styled-components'
+import styled, { injectGlobal, ThemeProvider } from 'styled-components'
 import { hot } from 'react-hot-loader'
 //
 import Routes from 'react-static-routes'
+
+// Helpers
+import theme from 'utils/theme'
 
 injectGlobal`
   body {
@@ -45,14 +48,16 @@ const AppStyles = styled.div`
 
 const App = () => (
   <Router>
-    <AppStyles>
-      <nav>
-        <Link to="/">Calendar</Link>
-      </nav>
-      <div className="content">
-        <Routes />
-      </div>
-    </AppStyles>
+    <ThemeProvider theme={theme}>
+      <AppStyles>
+        <nav>
+          <Link to="/">Calendar</Link>
+        </nav>
+        <div className="content">
+          <Routes />
+        </div>
+      </AppStyles>
+    </ThemeProvider>
   </Router>
 )
 
