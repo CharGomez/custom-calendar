@@ -6,7 +6,7 @@ import { hot } from 'react-hot-loader'
 import Routes from 'react-static-routes'
 
 // Helpers
-import { theme } from './utils/theme'
+import { theme } from 'utils/theme'
 
 injectGlobal`
   body {
