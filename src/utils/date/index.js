@@ -7,14 +7,11 @@ const date = {
     const daysRange = []
     const timeValues = []
     let currentDate = start
-
     while (lastDate > currentDate || moment(currentDate).format('M') === moment(lastDate).format('M')) {
       timeValues.push(moment(currentDate).format('YYYY-MM'))
       currentDate = moment(currentDate).add(1, 'month').format()
     }
-
     currentDate = start
-
     while (currentDate <= lastDate) {
       daysRange.push(currentDate)
       currentDate = moment(currentDate).add(1, 'day').format()
@@ -45,6 +42,8 @@ const date = {
     }
     return daysRange
   },
+
+  getDate: day => moment(day).format('DD'),
 
   isWeekend: day => moment(day).format('d') === '0' || moment(day).format('d') === '6',
 }

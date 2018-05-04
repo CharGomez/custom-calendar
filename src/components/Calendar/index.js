@@ -1,31 +1,19 @@
 /* @flow */
 import React from 'react'
-import styled from 'styled-components'
 import moment from 'moment'
 import _ from 'lodash'
 
 // Helpers
 import { date } from 'utils/date'
 
-// Style
-import style from './style'
-
-const StyledDiv = styled.div`
-  ${style.div}
-`
-
-const StyledTitle = styled.p`
-  ${style.title}
-`
-
-const StyledDescription = styled.p`
-  ${style.description}
-`
+// Components
+import { StyledDiv, StyledTitle, CalendarInfo, StyledDescription } from './children'
 
 const DayTile = StyledDescription.extend`
-background-color: ${({ theme: { colors } }) => colors.transparent};
-color: ${({ theme: { colors } }) => colors.navy};
+  background-color: ${({ theme: { colors } }) => colors.transparent};
+  color: ${({ theme: { colors } }) => colors.navy};
 `
+
 const Calendar = ({ currentMonth, daysRange }) => {
   const monthDays = daysRange.filter(day => {
     const formattedDay = moment(day).format('YYYY-MM')
@@ -42,12 +30,12 @@ const Calendar = ({ currentMonth, daysRange }) => {
         { ['S', 'M', 'T', 'W', 'T', 'F', 'S'].map(dayOfWeek => <DayTile key={_.uniqueId('dayOfWeek')}>{dayOfWeek}</DayTile>) }
       </div>
       <StyledTitle>{currentMonth}</StyledTitle>
-      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-        { _.range(startingWeekDay).map(day => <StyledDescription disabled key={_.uniqueId(day)} />) }
-        { missingDays.map(day => <StyledDescription disabled key={_.uniqueId(day)}>{moment(day).format('DD')}</StyledDescription>)}
-        { monthDays.map(day => <StyledDescription weekDay={!date.isWeekend(day)} key={_.uniqueId(day)}>{moment(day).format('DD')}</StyledDescription>)}
-        { missingPostDays.map(day => <StyledDescription disabled key={_.uniqueId(day)}>{moment(day).format('DD')}</StyledDescription>)}
-      </div>
+      <CalendarInfo {...{
+        startingWeekDay,
+        missingDays,
+        monthDays,
+        missingPostDays,
+      }} />
     </StyledDiv>
   )
 }
