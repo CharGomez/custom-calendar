@@ -14,6 +14,5 @@
 ### Holiday API restrictions
 - [Holiday](https://holidayapi.com/)
 - **Free accounts are limited to historical data. Upgrade to premium for access to current and upcoming holiday data.**
-- Country Codes allowed: 
-![Supported Countries]
-(https://d1ro8r1rbfn3jf.cloudfront.net/ms_155769/3zbVRq4uCNKXp3fMSKokwTUfBJRYyL/Holiday%2BAPI%2B2018-05-04%2B10-41-49.png)
+- Country Codes allowed:
+![Supported Countries](https://monosnap.com/image/0wugWixREbysSyedm4N4NismYH4Usk.png)
