@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import _ from 'lodash'
 
 // Components
 import CustomInput from 'components/CustomInput'
@@ -6,7 +7,12 @@ import CustomButton from 'components/CustomButton'
 import CalendarList from 'components/CalendarList'
 
 class Home extends Component {
-  state = { startDate: '', totalDays: '', countryCode: '' }
+  state = {
+    startDate: '',
+    totalDays: '',
+    countryCode: '',
+    showCalendar: false,
+  }
 
   render () {
     return (
@@ -36,11 +42,26 @@ class Home extends Component {
             value={this.state.countryCode}
             onChange={this.handleChange('countryCode')}
           />
-          <CustomButton> Create </CustomButton>
+          <CustomButton onClick={this.handleClick} disabled={_.isEmpty(this.state.startDate) || _.isEmpty(this.state.totalDays)}>{this.state.showCalendar ? 'Clear' : 'Create' }</CustomButton>
         </section>
-        <CalendarList />
+        { this.state.showCalendar &&
+          <CalendarList numberOfDays={this.state.totalDays} startDate={this.state.startDate} />
+        }
       </Fragment>
     )
+  }
+
+  handleClick = () => {
+    if (this.state.showCalendar) {
+      this.setState({
+        startDate: '',
+        totalDays: '',
+        countryCode: '',
+        showCalendar: false,
+      })
+    } else {
+      this.setState({ showCalendar: !this.state.showCalendar })
+    }
   }
 
   handleChange = field => e => this.setState({ [field]: e.target.value });

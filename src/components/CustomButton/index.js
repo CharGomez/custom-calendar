@@ -12,7 +12,7 @@ const CustomButton = styled.button`
   border         : ${({ theme: { colors } }) => `2px solid ${colors.navy}`};
   background     : ${({ primary, theme: { colors } }) => primary ? colors.shadow(15) : colors.white};
   color          : ${({ primary, theme: { colors } }) => primary ? colors.white : colors.black};
-  cursor         : pointer;
+  cursor         : ${props => props.disabled ? 'not-allowed' : 'pointer'};
   outline        : none;
 `
 

@@ -19,7 +19,6 @@ const date = {
       daysRange.push(currentDate)
       currentDate = moment(currentDate).add(1, 'day').format()
     }
-    console.log(`check ${start} - to - ${lastDate} - for - ${numberOfDays}`)
     return { months: timeValues, days: daysRange }
   },
 
@@ -30,7 +29,20 @@ const date = {
       daysRange.push(currentDate)
       currentDate = moment(currentDate).add(1, 'day').format()
     }
-    console.log('*************   ', daysRange)
+    return daysRange
+  },
+
+  getPostDays: (startDate, lastDate) => {
+    const daysRange = []
+    const sameDay = moment(lastDate).format('MM/DD/YYYY') === moment(startDate).format('MM/DD/YYYY')
+    let currentDate = startDate
+    if (!sameDay) {
+      currentDate = moment(currentDate).add(1, 'day').format()
+    }
+    while (!sameDay && currentDate < lastDate) {
+      daysRange.push(currentDate)
+      currentDate = moment(currentDate).add(1, 'day').format()
+    }
     return daysRange
   },
 

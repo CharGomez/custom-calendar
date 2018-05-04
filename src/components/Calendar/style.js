@@ -7,6 +7,7 @@ const style = {
     justify-content: flex-start;
     width: 300px;
     height: 300px;
+    margin: 20px;
   `,
   title: css`
     font-weight: 800;

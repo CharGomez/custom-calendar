@@ -34,7 +34,7 @@ const Calendar = ({ currentMonth, daysRange }) => {
   const monthFirstDay = moment(currentMonth).startOf('month').format()
   const monthLastDay = moment(currentMonth).endOf('month').format()
   const missingDays = date.getDays(monthFirstDay, daysRange[0])
-  const missingPostDays = date.getDays(daysRange[0], monthLastDay)
+  const missingPostDays = date.getPostDays(_.last(monthDays), monthLastDay)
   const startingWeekDay = moment(monthFirstDay).format('d')
   return (
     <StyledDiv>
@@ -43,10 +43,10 @@ const Calendar = ({ currentMonth, daysRange }) => {
       </div>
       <StyledTitle>{currentMonth}</StyledTitle>
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-        { _.range(startingWeekDay).map(day => <StyledDescription disabled key={`day-${day}`} />) }
-        { missingDays.map(day => <StyledDescription weekDay={!date.isWeekend(day)} key={`day-${day}`}>{moment(day).format('DD')}</StyledDescription>)}
-        { monthDays.map(day => <StyledDescription weekDay={!date.isWeekend(day)} key={`day-${day}`}>{moment(day).format('DD')}</StyledDescription>)}
-        { missingPostDays.map(day => <StyledDescription disabled key={`day-${day}`}>{moment(day).format('DD')}</StyledDescription>)}
+        { _.range(startingWeekDay).map(day => <StyledDescription disabled key={_.uniqueId(day)} />) }
+        { missingDays.map(day => <StyledDescription disabled key={_.uniqueId(day)}>{moment(day).format('DD')}</StyledDescription>)}
+        { monthDays.map(day => <StyledDescription weekDay={!date.isWeekend(day)} key={_.uniqueId(day)}>{moment(day).format('DD')}</StyledDescription>)}
+        { missingPostDays.map(day => <StyledDescription disabled key={_.uniqueId(day)}>{moment(day).format('DD')}</StyledDescription>)}
       </div>
     </StyledDiv>
   )
