@@ -5,7 +5,7 @@ export default {
   getSiteData: () => ({
     title: 'Custom Calendar',
   }),
-  getRoutes: async () => ([
+  getRoutes: () => ([
     {
       path: '/',
       component: 'src/containers/Home',
