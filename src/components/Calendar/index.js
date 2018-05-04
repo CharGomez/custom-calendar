@@ -29,7 +29,7 @@ const Calendar = ({ currentMonth, daysRange }) => {
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         { ['S', 'M', 'T', 'W', 'T', 'F', 'S'].map(dayOfWeek => <DayTile key={_.uniqueId('dayOfWeek')}>{dayOfWeek}</DayTile>) }
       </div>
-      <StyledTitle>{currentMonth}</StyledTitle>
+      <StyledTitle>{`${currentMonth} (${moment(currentMonth).format('MMMM')})`}</StyledTitle>
       <CalendarInfo {...{
         startingWeekDay,
         missingDays,

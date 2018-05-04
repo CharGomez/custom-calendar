@@ -13,10 +13,24 @@ const CalendarInfo = ({
   missingPostDays,
 }) => (
   <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-    { _.range(startingWeekDay).map(day => <StyledDescription disabled key={_.uniqueId(day)} />) }
-    { missingDays.map(day => <StyledDescription disabled key={_.uniqueId(day)}>{date.getDate(day)}</StyledDescription>)}
-    { monthDays.map(day => <StyledDescription weekDay={!date.isWeekend(day)} key={_.uniqueId(day)}>{date.getDate(day)}</StyledDescription>)}
-    { missingPostDays.map(day => <StyledDescription disabled key={_.uniqueId(day)}>{date.getDate(day)}</StyledDescription>)}
+    { _.range(startingWeekDay).map(day => (
+      <StyledDescription disabled key={_.uniqueId(day)} />
+    ))}
+    { missingDays.map(day => (
+      <StyledDescription disabled key={_.uniqueId(day)}>
+        { date.getDate(day) }
+      </StyledDescription>
+    ))}
+    { monthDays.map(day => (
+      <StyledDescription weekDay={!date.isWeekend(day)} key={_.uniqueId(day)}>
+        { date.getDate(day) }
+      </StyledDescription>
+    ))}
+    { missingPostDays.map(day => (
+      <StyledDescription disabled key={_.uniqueId(day)}>
+        { date.getDate(day) }
+      </StyledDescription>
+    ))}
   </div>
 )
 
