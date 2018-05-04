@@ -1,4 +1,7 @@
 import moment from 'moment'
+import axios from 'axios'
+
+import { constants } from '../constants'
 
 const date = {
   getMonths_Days: (startDate, numberOfDays) => {
@@ -46,6 +49,24 @@ const date = {
   getDate: day => moment(day).format('DD'),
 
   isWeekend: day => moment(day).format('d') === '0' || moment(day).format('d') === '6',
+
+  getMonthlyHolidays: async (country, year, month) => {
+    const api = `https://holidayapi.com/v1/holidays?key=${constants.holidayKey}&country=${country}&year=${year}&month=${month}`
+    try {
+      const { data: { holidays } } = await axios.get(api)
+      return holidays
+    } catch (e) {
+      return []
+    }
+  },
+
+  checkHoliday: (holidays, date) => {
+    const holidayFound = holidays.filter(day => {
+      const current = moment(new Date(`${day.date}T00:00:00-06:00`)).format('MM/DD/YYYY')
+      return moment(current, 'MM/DD/YYYY', true).format() === date
+    })
+    return holidayFound.length > 0
+  },
 }
 
 export { date }

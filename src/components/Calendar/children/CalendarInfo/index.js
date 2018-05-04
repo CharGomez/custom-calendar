@@ -11,6 +11,7 @@ const CalendarInfo = ({
   missingDays,
   monthDays,
   missingPostDays,
+  holidays,
 }) => (
   <div style={{ display: 'flex', flexWrap: 'wrap' }}>
     { _.range(startingWeekDay).map(day => (
@@ -22,7 +23,10 @@ const CalendarInfo = ({
       </StyledDescription>
     ))}
     { monthDays.map(day => (
-      <StyledDescription weekDay={!date.isWeekend(day)} key={_.uniqueId(day)}>
+      <StyledDescription key={_.uniqueId(day)}
+        weekDay={!date.isWeekend(day)}
+        isHoliday={date.checkHoliday(holidays, day)}
+      >
         { date.getDate(day) }
       </StyledDescription>
     ))}

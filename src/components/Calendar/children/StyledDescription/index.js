@@ -2,7 +2,8 @@ import styled from 'styled-components'
 
 const StyledDescription = styled.p`
   font-size: 18px;
-  color: ${({ theme: { colors }, disabled }) => disabled ? colors.gray : colors.white};
+  font-weight: ${({ isHoliday }) => isHoliday ? 800 : 400};
+  color: ${({ theme: { colors }, disabled, isHoliday }) => disabled ? colors.gray : colors.holidayColor(isHoliday)};
   background-color: ${({ theme: { colors }, disabled, weekDay }) => disabled ? colors.gray : colors.dayColor(weekDay)};
   letter-spacing: 0;
   text-align: center;

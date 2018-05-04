@@ -15,10 +15,16 @@ class CalendarList extends Component {
   }
 
   render () {
-    const { range: { months, days } } = this.state
+    const { range: { days, months } } = this.state
     return (
       <section style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
-        { months.map(month => <Calendar key={month} currentMonth={month} daysRange={days} />) }
+        { months.map(month => (
+          <Calendar key={month}
+            currentMonth={month}
+            daysRange={days}
+            countryCode={this.props.countryCode}
+          />
+        ))}
       </section>
     )
   }

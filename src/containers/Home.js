@@ -45,7 +45,11 @@ class Home extends Component {
           <CustomButton onClick={this.handleClick} disabled={_.isEmpty(this.state.startDate) || _.isEmpty(this.state.totalDays)}>{this.state.showCalendar ? 'Clear' : 'Create' }</CustomButton>
         </section>
         { this.state.showCalendar &&
-          <CalendarList numberOfDays={this.state.totalDays} startDate={this.state.startDate} />
+          <CalendarList
+            numberOfDays={this.state.totalDays}
+            startDate={this.state.startDate}
+            countryCode={this.state.countryCode}
+          />
         }
       </Fragment>
     )
